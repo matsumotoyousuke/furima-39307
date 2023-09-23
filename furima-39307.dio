@@ -52,7 +52,7 @@
                 <mxCell id="20" value="postage_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;labelBorderColor=none;" parent="13" vertex="1">
                     <mxGeometry y="176" width="160" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="17" value="prefectures_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;labelBorderColor=none;" parent="13" vertex="1">
+                <mxCell id="17" value="prefecture_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;labelBorderColor=none;" parent="13" vertex="1">
                     <mxGeometry y="206" width="160" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" value="shipping_day_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;labelBorderColor=none;" parent="13" vertex="1">
