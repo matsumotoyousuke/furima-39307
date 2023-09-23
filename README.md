@@ -26,7 +26,7 @@
 |category_id        |integer    |null: false                    |
 |condition_id       |integer    |null: false                    |
 |postage_id         |integer    |null: false                    |
-|shipping_source_id |integer    |null: false                    |
+|prefectures_id     |integer    |null: false                    |
 |shipping_day_id    |integer    |null: false                    |
 |price              |integer    |null: false                    |
 |user               |references |null: false, foreign_key: true |
@@ -52,14 +52,15 @@
 
 ## addressesテーブル
 
-|Column             |Type    |Options     |
-|-------------------|--------|------------|
-|post_code          |string  |null: false |
-|shipping_source_id |integer |null: false |
-|municipalities     |string  |null: false |
-|street_address     |string  |null: false |
-|building           |string  |            |
-|phone_number       |string  |null: false |
+|Column             |Type       |Options                        |
+|-------------------|-----------|-------------------------------|
+|post_code          |string     |null: false                    |
+|prefectures_id     |integer    |null: false                    |
+|municipalities     |string     |null: false                    |
+|street_address     |string     |null: false                    |
+|building           |string     |                               |
+|phone_number       |string     |null: false                    |
+|buy_record         |references |null: false, foreign_key: true |
 
 
 ### Association
