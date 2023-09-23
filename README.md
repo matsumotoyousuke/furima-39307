@@ -1,13 +1,15 @@
 ## usersテーブル
 
-|Column    |Type    |Options                   |
-|----------|--------|--------------------------|
-|nickname  |string  |null: false, unique: true |
-|email     |string  |null: false               |
-|password  |string  |null: false               |
-|name      |string  |null: false               |
-|name_kana |string  |null: false               |
-|birthday  |integer |null: false               |
+|Column             |Type    |Options                   |
+|-------------------|--------|--------------------------|
+|nickname           |string  |null: false               |
+|email              |string  |null: false, unique: true |
+|encrypted_password |string  |null: false               |
+|family_name        |string  |null: false               |
+|first_name         |string  |null: false               |
+|family_name_kana   |string  |null: false               |
+|first_name_kana    |string  |null: false               |
+|birthday           |date    |null: false               |
 
 
 ### Association
@@ -17,16 +19,17 @@
 
 ### itemsテーブル
 
-|Column          |Type    |Options     |
-|----------------|--------|------------|
-|product_name    |string  |null: false |
-|explanation     |text    |null: false |
-|category        |string  |null: false |
-|condition       |text    |null: false |
-|postage         |string  |null: false |
-|shipping_source |text    |null: false |
-|shipping_day    |string  |null: false |
-|price           |integer |null: false |
+|Column             |Type       |Options                        |
+|-------------------|-----------|-------------------------------|
+|product_name       |string     |null: false                    |
+|explanation        |text       |null: false                    |
+|category_id        |integer    |null: false                    |
+|condition_id       |integer    |null: false                    |
+|postage_id         |integer    |null: false                    |
+|shipping_source_id |integer    |null: false                    |
+|shipping_day_id    |integer    |null: false                    |
+|price              |integer    |null: false                    |
+|user               |references |null: false, foreign_key: true |
 
 
 ### Association
@@ -44,19 +47,19 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 
 ## addressesテーブル
 
-|Column         |Type    |Options     |
-|---------------|--------|------------|
-|post_code      |integer |null: false |
-|prefectures    |string  |null: false |
-|municipalities |string  |null: false |
-|street_address |text    |null: false |
-|building       |text    |            |
-|phone_number   |integer |null: false |
+|Column             |Type    |Options     |
+|-------------------|--------|------------|
+|post_code          |string  |null: false |
+|shipping_source_id |integer |null: false |
+|municipalities     |string  |null: false |
+|street_address     |string  |null: false |
+|building           |string  |            |
+|phone_number       |string  |null: false |
 
 
 ### Association
