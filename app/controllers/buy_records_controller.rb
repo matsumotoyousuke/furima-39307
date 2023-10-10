@@ -4,10 +4,14 @@ class BuyRecordsController < ApplicationController
 
   def index
     @buy_record_address = BuyRecordAddress.new
-    return unless user_signed_in?
-    return unless current_user.id == @item.user.id
 
-    redirect_to root_path
+    return unless user_signed_in?
+
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    elsif @item.buy_record.present?
+      redirect_to root_path
+    end
   end
 
   def create
