@@ -2,12 +2,19 @@ require 'rails_helper'
 
 RSpec.describe BuyRecordAddress, type: :model do
   before do
-    @buy_record_address = FactoryBot.build(:buy_record_address)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @buy_record_address = FactoryBot.build(:buy_record_address, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入' do
     context '商品購入できる場合' do
       it '必要事項を全て問題なく入力すると登録できる' do
+        expect(@buy_record_address).to be_valid
+      end
+
+      it 'buildingは空でも購入できる' do
+        @buy_record_address.building = nil
         expect(@buy_record_address).to be_valid
       end
     end
@@ -25,8 +32,8 @@ RSpec.describe BuyRecordAddress, type: :model do
         expect(@buy_record_address.errors.full_messages).to include('Post code is invalid. Input correctly')
       end
 
-      it 'prefecture_idが空では購入できない' do
-        @buy_record_address.prefecture_id = ''
+      it 'prefecture_idが1では購入できない' do
+        @buy_record_address.prefecture_id = '1'
         @buy_record_address.valid?
         expect(@buy_record_address.errors.full_messages).to include('Prefecture Select')
       end
@@ -46,24 +53,35 @@ RSpec.describe BuyRecordAddress, type: :model do
       it 'phone_numberが空では購入できない' do
         @buy_record_address.phone_number = ''
         @buy_record_address.valid?
-        expect(@buy_record_address.errors.full_messages).to include("Phone number can't be blank",
-                                                                    'Phone number Input only number')
+        expect(@buy_record_address.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it 'phone_numberが10桁以上11桁以内の半角数値以外では購入できない' do
-        @buy_record_address.phone_number = '22222222'
+      it 'phone_numberは9桁以下では購入できない' do
+        @buy_record_address.phone_number = '222222222'
         @buy_record_address.valid?
-        expect(@buy_record_address.errors.full_messages).to include('Phone number Input only number')
+        expect(@buy_record_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberは12桁以上では購入できない' do
+        @buy_record_address.phone_number = '222222222222'
+        @buy_record_address.valid?
+        expect(@buy_record_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'phone_numberは半角数値のみでなければ購入できない' do
+        @buy_record_address.phone_number = 'aaaaaaaaaaa'
+        @buy_record_address.valid?
+        expect(@buy_record_address.errors.full_messages).to include("Phone number is invalid")
       end
 
       it 'userが紐付いていないと保存できないこと' do
-        @buy_record_address.user_id = ''
+        @buy_record_address.user_id = nil
         @buy_record_address.valid?
         expect(@buy_record_address.errors.full_messages).to include("User can't be blank")
       end
 
       it 'itemが紐付いていないと保存できないこと' do
-        @buy_record_address.item_id = ''
+        @buy_record_address.item_id = nil
         @buy_record_address.valid?
         expect(@buy_record_address.errors.full_messages).to include("Item can't be blank")
       end

@@ -5,8 +5,6 @@ FactoryBot.define do
     municipalities     { '神戸市中央区' }
     street_address     { '三宮1-1' }
     phone_number       { '11111111111' }
-    user_id            { '1' }
-    item_id            { '1' }
     token              { 'tok_abcdefghijk00000000000000000' }
   end
 end
