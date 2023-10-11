@@ -14,7 +14,7 @@ RSpec.describe BuyRecordAddress, type: :model do
       end
 
       it 'buildingは空でも購入できる' do
-        @buy_record_address.building = nil
+        @buy_record_address.building = ''
         expect(@buy_record_address).to be_valid
       end
     end
